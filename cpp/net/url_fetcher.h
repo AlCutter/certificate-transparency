@@ -78,6 +78,10 @@ std::ostream& operator<<(std::ostream& output,
                          const UrlFetcher::Response& resp);
 
 
+std::ostream& operator<<(std::ostream& output,
+                         const UrlFetcher::Request& resp);
+
+
 }  // namespace cert_trans
 
 #endif  // CERT_TRANS_NET_URL_FETCHER_H_
