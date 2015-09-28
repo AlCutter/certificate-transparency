@@ -15,10 +15,31 @@ then
 fi
 if [ ! -f Makefile ]
 then
+  case `uname` in
+    Darwin)
+      # TODO(alcutter): Figure out how to use tcmalloc on OSX.
+      # The problem is that there are multiple ways of having it installed;
+      # macports should Just Work (maybe?), but brew squirrels it away
+      # somewhere and you'd need a brew --prefix perftools to find out where
+      # the dynlibs are.
+      CONFIGURE_FLAGS="--without-tcmalloc"
+      EXTRA_LDFLAGS="-lresolv"
+      ;;
+    FreeBSD)
+      EXTRA_LDFLAGS="-L/usr/local/lib"
+      ;;
+  esac
     # FIXME: MacOS needs -lresolv
     #CPPFLAGS="-I$INSTALL/include" LDFLAGS="-L$INSTALL/lib" LIBS="-lresolv" ./configure GMOCK_DIR=$GMOCK
-    CPPFLAGS="-I$INSTALL/include" LDFLAGS="-L$INSTALL/lib" LIBS="-lpthread" ./configure GMOCK_DIR=$GMOCK
+    PKG_CONFIG_PATH="$INSTALL/lib/pkgconfig" CPPFLAGS="-I$INSTALL/include" LDFLAGS="-L$INSTALL/lib $EXTRA_LDFLAGS" LIBS="-lpthread" ./configure GMOCK_DIR=$GMOCK $CONFIGURE_FLAGS
 fi
 
 # FIXME: most platforms want make, FreeBSD wants gmake
-gmake
+case `uname` in
+  FreeBSD*)
+    gmake
+    ;;
+  *)
+    make
+     ;;
+esac

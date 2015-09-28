@@ -5,7 +5,7 @@ make: build/Makefile
 	cd build && make && make install
 
 build/Makefile: build
-	cd build && cmake -DCMAKE_INSTALL_PREFIX=`pwd`/../../install ..
+	cd build && cmake -DCMAKE_CXX_FLAGS:STRING=-fPIC -DCMAKE_INSTALL_PREFIX=`pwd`/../../install ..
 
 build:
 	mkdir build

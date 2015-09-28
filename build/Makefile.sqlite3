@@ -10,7 +10,7 @@ install: Makefile manifest
 
 Makefile: Makefile.in configure
 	# Tcl doesn't install locally
-	./configure --prefix=`pwd`/../install --disable-tcl
+	CFLAGS="-fPIC" LDFLAGS="-fPIC" ./configure --prefix=`pwd`/../install --disable-tcl
 
 manifest:
 	../sqlite3-export/create-fossil-manifest

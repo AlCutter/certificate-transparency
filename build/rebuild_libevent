@@ -13,7 +13,7 @@ then
 fi
 if [ ! -f Makefile ]
 then
-	CFLAGS="-I$INSTALL/include -L$INSTALL/lib" ./configure --prefix=$INSTALL
+	CFLAGS="-I$INSTALL/include -L$INSTALL/lib -fPIC" LDFLAGS="-fPIC" ./configure --prefix=$INSTALL
 	# in case there's any cruft lying around
 	make clean
 fi
