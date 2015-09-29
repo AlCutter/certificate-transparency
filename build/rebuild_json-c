@@ -13,7 +13,9 @@ then
 fi
 if [ ! -f Makefile ]
 then
-	CFLAGS="-I$INSTALL/include -Wno-unused-but-set-variable" LDFLAGS="-L$INSTALL/lib" ./configure --prefix=$INSTALL
+	# The release doesn't build with -Werror because of an unused var, sign.
+	CFLAGS="-Wno-error"
+	CFLAGS="$CFLAGS -I$INSTALL/include" LDFLAGS="-L$INSTALL/lib" ./configure --prefix=$INSTALL
 	# in case there's any cruft lying around
 	make clean
 fi

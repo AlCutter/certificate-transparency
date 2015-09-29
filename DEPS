@@ -29,6 +29,11 @@ deps_overrides = {
   }
 }
 
+make_os = {
+	"freebsd10": "gmake",
+	"darwin":		 "gnumake"
+}
+
 import os
 import sys
 
@@ -36,66 +41,19 @@ print "Host platform is %s" % sys.platform
 if sys.platform in deps_overrides:
   print "Have %d overrides for platform" % len(deps_overrides[sys.platform])
   deps.update(deps_overrides[sys.platform])
+if sys.platform in make_os:
+  make = make_os[sys.platform]
+else:
+  make = "make"
+print "Using make: %s" % make
 
 here = os.getcwd()
 install = os.path.join(here, "install")
 
-
 hooks = [
     {
-        "name": "openssl",
-        "pattern": "^openssl/",
-        "action": [ "make", "-C", "openssl", "-f", os.path.join(here, "certificate-transparency/build/Makefile.openssl"), "INSTALL=" + install ],
-    },
-    {
-        "name": "protobuf",
-        "pattern": "^protobuf/",
-        "action": [ "certificate-transparency/build/rebuild_protobuf" ],
-    },
-    {
-        "name": "libevent",
-        "pattern": "^libevent/",
-        "action": [ "certificate-transparency/build/rebuild_libevent" ],
-    },
-    {
-        "name": "libevhtp",
-        "pattern": "^libevhtp/",
-        "action": [ "certificate-transparency/build/rebuild_libevhtp" ],
-    },
-    {
-        "name": "gflags",
-        "pattern": "^gflags/",
-        "action": [ "make", "-C", "gflags", "-f", os.path.join(here, "certificate-transparency/build/Makefile.gflags") ],
-    },
-    {
-        "name": "glog",
-        "pattern": "^glog/",
-        "action": [ "make", "-C", "glog", "-f",  os.path.join(here, "certificate-transparency/build/Makefile.glog") ],
-    },
-    {
-        "name": "ldns",
-        "pattern": "^ldns/",
-        "action": [ "make", "-C", "ldns", "-f",  os.path.join(here, "certificate-transparency/build/Makefile.ldns") ],
-    },
-    {
-        "name": "sqlite3",
-        "pattern": "^sqlite3/",
-        "action": [ "make", "-C", "sqlite3", "-f",  os.path.join(here, "certificate-transparency/build/Makefile.sqlite3") ],
-    },
-    {
-        "name": "leveldb",
-        "pattern": "^leveldb/",
-        "action": [ "make", "-C", "leveldb", "-f",  os.path.join(here, "certificate-transparency/build/Makefile.leveldb") ],
-    },
-    {
-        "name": "json-c",
-        "pattern": "^json-c/",
-        "action": [ "certificate-transparency/build/rebuild_json-c" ],
-    },
-    # Do this last
-    {
-        "name": "ct",
+        "name": "deps",
         "pattern": ".",
-        "action": [ "certificate-transparency/build/rebuild" ],
-    }
+        "action": [ "make", "-f", os.path.join(here, "certificate-transparency/build.gclient"), "INSTALL=%s"%install],
+    },
 ]
