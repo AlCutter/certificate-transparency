@@ -2,7 +2,7 @@ all: make
 
 make: build/Makefile
 	# INSTALL says to run make test, but there's no such target
-	cd build && make && make install
+	cd build && $(MAKE) && $(MAKE) install
 
 build/Makefile: build
 	cd build && cmake -DCMAKE_CXX_FLAGS:STRING=-fPIC -DCMAKE_INSTALL_PREFIX=`pwd`/../../install ..

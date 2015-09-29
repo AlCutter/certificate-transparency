@@ -31,6 +31,11 @@ deps_overrides = {
   }
 }
 
+make_os = {
+	"freebsd10": "gmake",
+	"darwin": "gnumake"
+}
+
 import os
 import sys
 
@@ -38,6 +43,11 @@ print "Host platform is %s" % sys.platform
 if sys.platform in deps_overrides:
   print "Have %d overrides for platform" % len(deps_overrides[sys.platform])
   deps.update(deps_overrides[sys.platform])
+if sys.platform in make_os:
+	make = make_os[sys.platform]
+else:
+	make = "make"
+print "Using make %s" % make
 
 here = os.getcwd()
 install = os.path.join(here, "install")
@@ -46,6 +56,6 @@ hooks = [
     {
         "name": "deps",
         "pattern": ".",
-        "action": [ "make", "-f", os.path.join(here, "certificate-transparency/build.gclient"), "INSTALL_DIR=%s"%install],
+        "action": [ make, "-f", os.path.join(here, "certificate-transparency/build.gclient"), "INSTALL_DIR=%s"%install],
     },
 ]

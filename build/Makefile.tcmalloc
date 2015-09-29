@@ -1,8 +1,8 @@
 all: Makefile
-	make
+	$(MAKE)
 	# Not good on OSX at the moment:
 	#make check
-	make install
+	$(MAKE) install
 
 Makefile: configure
 	./configure --prefix=`pwd`/../install

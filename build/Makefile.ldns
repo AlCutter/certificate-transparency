@@ -6,10 +6,10 @@ endif
 INSTALL_DIR=$(shell pwd)/../install
 
 all: Makefile
-	make
+	$(MAKE)
 # FIXME: skip test for now, requires dig, which FreeBSD doesn't have.
 #	make test
-	make install
+	$(MAKE) install
 
 Makefile: configure
 	CPPFLAGS="-I$(INSTALL_DIR)/include" LDFLAGS="-L$(INSTALL_DIR)/lib" ./configure --prefix=$(INSTALL_DIR) --with-ssl=$(INSTALL_DIR)
