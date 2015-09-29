@@ -1,6 +1,7 @@
 all: Makefile
 	make
-	make check
+	# Not good on OSX at the moment:
+	#make check
 	make install
 
 Makefile: configure

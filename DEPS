@@ -15,6 +15,7 @@ deps = {
      # Randomly chosen github mirror
      "sqlite3-export": 	 "http://repo.or.cz/sqlite-export.git",
      "sqlite3": 				 "http://repo.or.cz/sqlite.git@version-3.8.10.1",
+		 "tcmalloc":				 "https://github.com/gperftools/gperftools.git@gperftools-2.4"
 }
 
 # Can't use deps_os for this because it doesn't know about freebsd :/
