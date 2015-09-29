@@ -1,0 +1,10 @@
+all: Makefile
+	make
+	make check
+	make install
+
+Makefile: configure
+	./configure --prefix=`pwd`/../install
+
+configure: configure.ac
+	autoreconf -i

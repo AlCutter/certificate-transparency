@@ -1,8 +1,11 @@
 # TODO(pphaneuf): Make this be good.
 
-.PHONY: configure-ct openssl protobuf libevent libevhtp gflags glog ldns sqlite3 leveldb json-c
+.PHONY: configure-ct openssl protobuf libevent libevhtp gflags glog ldns sqlite3 leveldb json-c tcmalloc
 
 all: configure-ct
+
+tcmalloc:
+	$(MAKE) -C gflags -f ../certificate-transparency/build/Makefile.tcmalloc
 
 openssl:
 	make -C openssl -f `pwd`/certificate-transparency/build/Makefile.openssl INSTALL=$(INSTALL)
@@ -34,5 +37,5 @@ leveldb:
 json-c:
 	certificate-transparency/build/rebuild_json-c
 
-configure-ct: openssl protobuf libevent libevhtp gflags glog ldns sqlite3 leveldb json-c
+configure-ct: tcmalloc openssl protobuf libevent libevhtp gflags glog ldns sqlite3 leveldb json-c
 	certificate-transparency/build/configure-ct
