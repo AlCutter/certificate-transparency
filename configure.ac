@@ -59,6 +59,9 @@ else
   AC_MSG_WARN([NOT building hardened binaries])
 fi
 
+# Checks for other tools
+AC_PATH_PROG([PROTOC], [protoc],, ["../install/bin"])
+
 # Checks for header files.
 AC_HEADER_RESOLV
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h limits.h netinet/in.h stddef.h stdint.h stdlib.h string.h sys/socket.h sys/time.h unistd.h leveldb/filter_policy.h])

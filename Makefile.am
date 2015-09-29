@@ -101,7 +101,7 @@ if HAVE_ANT
 endif
 
 %.pb.h %.pb.cc: %.proto
-	$(AM_V_GEN)protoc $^ --cpp_out=.
+	$(AM_V_GEN)$(PROTOC) $^ --cpp_out=.
 
 cpp/gtest-all.cc: $(GTEST_DIR)/src/gtest-all.cc
 	$(AM_V_at)cp $^ $@
