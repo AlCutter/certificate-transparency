@@ -8,7 +8,7 @@ tcmalloc:
 	$(MAKE) -C gflags -f ../certificate-transparency/build/Makefile.tcmalloc
 
 openssl:
-	make -C openssl -f `pwd`/certificate-transparency/build/Makefile.openssl INSTALL=$(INSTALL)
+	make -C openssl -f `pwd`/certificate-transparency/build/Makefile.openssl INSTALL_DIR=$(INSTALL_DIR)
 
 protobuf:
 	certificate-transparency/build/rebuild_protobuf

@@ -61,7 +61,7 @@ Build and test Python code:
 
 Best and test Go code:
 
-    go test -v ./go/... 
+    go test -v ./go/...
 
 
 ## Dependencies ##
@@ -69,7 +69,9 @@ Best and test Go code:
  - A working C++11 compiler.
 
  - autoconf/automake etc.
-
+ - cmake
+ - tcl
+ ...
  - [depot_tools](https://www.chromium.org/developers/how-tos/install-depot-tools)
 
 ## Building ##
@@ -78,6 +80,7 @@ Best and test Go code:
     $ cd ct
     $ gclient config git@github.com:google/certificate-transparency.git
     $ gclient sync
+    $ [g[nu]make -C certificate-transparency
 
 ## Old Method ##
 

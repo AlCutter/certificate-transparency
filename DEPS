@@ -5,7 +5,7 @@ deps = {
      "googlemock": 			 "https://github.com/google/googlemock.git@release-1.7.0",
      "googlemock/gtest": "https://github.com/google/googletest.git@release-1.7.0",
      "json-c": 					 "https://github.com/json-c/json-c.git@json-c-0.12-20140410",
-     "ldns": 						 "https://git.nlnetlabs.nl/ldns@release-1.6.17",
+     "ldns": 						 "git://git.nlnetlabs.nl/ldns@release-1.6.17",
      "leveldb": 				 "https://github.com/google/leveldb.git@v1.18",
      "libevent": 				 "https://github.com/libevent/libevent.git@release-2.0.22-stable",
      "libevhtp": 				 "https://github.com/ellzey/libevhtp.git@ba4c44eed1fb7a5cf8e4deb236af4f7675cc72d5",
@@ -45,6 +45,6 @@ hooks = [
     {
         "name": "deps",
         "pattern": ".",
-        "action": [ "make", "-f", os.path.join(here, "certificate-transparency/build.gclient"), "INSTALL=%s"%install],
+        "action": [ "make", "-f", os.path.join(here, "certificate-transparency/build.gclient"), "INSTALL_DIR=%s"%install],
     },
 ]
