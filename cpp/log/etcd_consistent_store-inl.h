@@ -9,7 +9,7 @@
 
 #include "base/notification.h"
 #include "log/etcd_consistent_store.h"
-#include "log/logged_certificate.h"
+#include "log/logged_entry.h"
 #include "monitoring/event_metric.h"
 #include "monitoring/latency.h"
 #include "monitoring/monitoring.h"

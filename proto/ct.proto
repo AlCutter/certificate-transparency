@@ -75,12 +75,18 @@ message PrecertChainEntry {
   optional PreCert pre_cert = 3;
 }
 
+message JSONEntry {
+  optional string body = 1;
+}
+
 message LogEntry {
   optional LogEntryType type = 1 [ default = UNKNOWN_ENTRY_TYPE ];
 
   optional X509ChainEntry x509_entry = 2;
 
   optional PrecertChainEntry precert_entry = 3;
+
+  optional JSONEntry json_entry = 4;
 }
 
 enum SignatureType {
@@ -123,6 +129,7 @@ enum MerkleLeafType {
 message SignedEntry {
   optional bytes x509 = 1;
   optional PreCert precert = 2;
+  optional string json = 3;
 }
 
 message TimestampedEntry {
@@ -167,7 +174,8 @@ message ShortMerkleAuditProof {
 // for logging entries and tree head state.                                   //
 ////////////////////////////////////////////////////////////////////////////////
 
-message LoggedCertificatePB {
+// TODO(alcutter): Come up with a better name :/
+message LoggedEntryPB {
   optional int64 sequence_number = 1;
   optional bytes merkle_leaf_hash = 2;
   message Contents {

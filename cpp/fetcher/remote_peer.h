@@ -7,7 +7,7 @@
 
 namespace cert_trans {
 
-class LoggedCertificate;
+class LoggedEntry;
 
 
 class RemotePeer : public Peer {
