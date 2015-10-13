@@ -27,6 +27,7 @@
 #include "monitoring/latency.h"
 #include "monitoring/monitoring.h"
 #include "monitoring/registry.h"
+#include "server/certificate_handler.h"
 #include "server/json_output.h"
 #include "server/proxy.h"
 #include "util/etcd.h"
@@ -112,7 +113,7 @@ class Server {
   ThreadPool http_pool_;
   JsonOutput json_output_;
   std::unique_ptr<Proxy> proxy_;
-  std::unique_ptr<HttpHandler> handler_;
+  std::unique_ptr<HttpHandler<Logged>> handler_;
   std::unique_ptr<std::thread> node_refresh_thread_;
   std::unique_ptr<GCMExporter> gcm_exporter_;
 
@@ -331,10 +332,11 @@ void Server<Logged>::Initialise(bool is_mirror) {
                 bind(&ClusterStateController<LoggedEntry>::GetFreshNodes,
                      cluster_controller_.get()),
                 url_fetcher_, &http_pool_));
-  handler_.reset(new HttpHandler(&json_output_, log_lookup_.get(), db_,
-                                 cluster_controller_.get(), cert_checker_,
-                                 frontend_.get(), proxy_.get(), &http_pool_,
-                                 event_base_.get()));
+  handler_.reset(new CertificateHttpHandler(&json_output_, log_lookup_.get(),
+                                            db_, cluster_controller_.get(),
+                                            cert_checker_, frontend_.get(),
+                                            proxy_.get(), &http_pool_,
+                                            event_base_.get()));
 
   handler_->Add(&http_server_);
 }

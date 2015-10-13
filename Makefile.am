@@ -199,6 +199,7 @@ cpp_server_ct_mirror_SOURCES = \
 	cpp/fetcher/remote_peer.cc \
 	cpp/proto/serializer.cc \
 	cpp/server/ct-mirror.cc \
+	cpp/server/certificate_handler.cc \
 	cpp/server/handler.cc \
 	cpp/server/json_output.cc \
 	cpp/server/metrics.cc \
@@ -224,6 +225,7 @@ cpp_server_ct_server_SOURCES = \
 	cpp/client/async_log_client.cc \
 	cpp/proto/serializer.cc \
 	cpp/server/ct-server.cc \
+	cpp/server/certificate_handler.cc \
 	cpp/server/handler.cc \
 	cpp/server/json_output.cc \
 	cpp/server/metrics.cc \

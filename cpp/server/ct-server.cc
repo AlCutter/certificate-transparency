@@ -99,7 +99,6 @@ using cert_trans::EtcdClient;
 using cert_trans::EtcdConsistentStore;
 using cert_trans::FakeEtcdClient;
 using cert_trans::FileStorage;
-using cert_trans::HttpHandler;
 using cert_trans::Latency;
 using cert_trans::LoggedEntry;
 using cert_trans::ReadPrivateKey;

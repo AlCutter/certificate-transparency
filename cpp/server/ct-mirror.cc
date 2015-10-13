@@ -324,7 +324,7 @@ int main(int argc, char* argv[]) {
 
   util::InitCT(&argc, &argv);
 
-  Server<LoggedEntry>::StaticInit();
+  cert_trans::Server<LoggedEntry>::StaticInit();
 
   if (!FLAGS_sqlite_db.empty() + !FLAGS_leveldb_db.empty() +
           (!FLAGS_cert_dir.empty() | !FLAGS_tree_dir.empty()) !=
