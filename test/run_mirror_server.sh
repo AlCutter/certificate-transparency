@@ -35,5 +35,4 @@ export TSAN_OPTIONS=${TSAN_OPTIONS:-log_path=tsan_log suppressions=../cpp/tsan_s
   --leveldb_db=$STORAGE \
   --v 1 \
   --monitoring=prometheus \
-  --etcd_servers=localhost:4001 \
   $*

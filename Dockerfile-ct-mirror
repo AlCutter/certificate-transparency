@@ -8,6 +8,8 @@ RUN apt-get update && \
         software-properties-common \
         ca-certificates \
         etcdctl
+RUN update-ca-certificates && \
+    cat /etc/ssl/certs/* > /usr/local/etc/ctlog_ca_roots.pem
 RUN groupadd -r ctlog && useradd -r -g ctlog ctlog
 RUN mkdir /mnt/ctmirror
 COPY cpp/server/ct-mirror /usr/local/bin/
