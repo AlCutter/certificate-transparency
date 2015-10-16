@@ -40,6 +40,7 @@ CMD cd /mnt/ctmirror/ && \
         --target_public_key=/usr/local/etc/keys/${TARGET_LOG_PUBLIC_KEY} \
         --target_log_uri=${TARGET_LOG_URL} \
         --monitoring=${MONITORING} \
+        --trusted_root_certs=/usr/local/etc/ctlog_ca_roots.pem \
         --google_compute_monitoring_base_url="https://www.googleapis.com/cloudmonitoring/v2beta2/projects/${PROJECT}" \
         --v=${V_LEVEL}; \
     if [ -e core ]; then \

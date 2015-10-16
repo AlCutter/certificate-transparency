@@ -32,6 +32,7 @@ CMD cd /mnt/ctlog/ && \
         --server=${CONTAINER_HOST} \
         --key=/usr/local/etc/ct-server-key.pem \
         --trusted_cert_file=/usr/local/etc/ctlog_ca_roots.pem \
+        --trusted_root_certs=/usr/local/etc/ctlog_ca_roots.pem \
         --log_dir=/mnt/ctlog/logs \
         --tree_signing_frequency_seconds=30 \
         --guard_window_seconds=10 \
